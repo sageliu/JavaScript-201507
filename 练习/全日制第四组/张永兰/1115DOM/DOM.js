@@ -2,12 +2,12 @@
  * Created by zhangyonglan on 2015/11/15.
  */
 var DOM={}
-DOM.getIndex=function getIndex(ele){//»ñÈ¡µ±Ç°ÔªËØµÄË÷Òý
+DOM.getIndex=function getIndex(ele){//ï¿½ï¿½È¡ï¿½ï¿½Ç°Ôªï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
     var index=0;
     var p=ele.previousSibling;
     while(p){
         if(p.nodeType==1){
-            index++;  //ÔªËØÇ°±ßÓÐ¼¸¸öÔªËØ£¬Ôò´ÎÔªËØµÄË÷Òý¾ÍÊÇ¼¸
+            index++;  //Ôªï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½Ôªï¿½Ø£ï¿½ï¿½ï¿½ï¿½Ôªï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¼ï¿½
         }
         p= p.previousSibling;
     }
@@ -23,7 +23,7 @@ DOM.getIndex=function getIndex(ele){//»ñÈ¡µ±Ç°ÔªËØµÄË÷Òý
         p= p.nextSibling;
     }*/
 };
-DOM.prepend=function(ele,child){//ÎªeleÌí¼ÓµÚÒ»¸ö×ÓÔªËØ
+DOM.prepend=function(ele,child){//Îªeleï¿½ï¿½Óµï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
     ele.insertBefore(child,ele.firstChild);
 };
 DOM.insertAfter=function (ele,eleAfter){
@@ -47,7 +47,7 @@ DOM.siblings=function(ele){
     }
     return a;
 };
-DOM.next=function(ele){//·µ»ØeleµÄÏÂÒ»¸öÔªËØ½Úµã
+DOM.next=function(ele){//ï¿½ï¿½ï¿½ï¿½eleï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½Ø½Úµï¿½
     if(typeof ele.nextElementSibling=="Object"){
         return ele.nextElementSibling;
     }else{
@@ -95,7 +95,7 @@ DOM.children=function(ele,tagName){
         var reg=/^[A-Z][A-Z0-9_]*$/;
 
     }else{
-        throw new Error("²ÎÊý´íÎó");
+        throw new Error("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
     for(var i=0;i<children.length;i++){
         var child=children[i];
@@ -106,9 +106,21 @@ DOM.children=function(ele,tagName){
     return a;
 
 };
-DOM.getElesByClass=function(){
-
+DOM.getElesByClass(strClass,eles){
+    //var eles=document.getElementsByTagName("*");
+    var reg=new regExp("(^| )"+strClass+"( |$)");
+    var a=[];
+    for(var i=0;i<eles.length;i++){
+        var ele=eles[i];
+        if(reg.test(ele.className)){
+            a.push(ele);
+        }
+    }
+    return a;
 };
+
+
+
 DOM.addClass=function(ele,strClass){
     var reg=new RegExp("(^| )"+strClass+"( |$)","g");
     if(!reg.test(strClass)){
