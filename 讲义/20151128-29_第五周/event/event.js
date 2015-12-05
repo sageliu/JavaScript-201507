@@ -1,46 +1,3 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>无标题文档</title>
-<style type="text/css">
-#div1{ width:300px; height:100px; background:red;}
-</style>
-</head>
-
-<body>
-<div id="div1"></div>
-</body>
-</html>
-<script>
-var ele=document.getElementById("div1");
-function fn1(){
-	alert(1);
-	this.innerHTML="只要是文字出现在DIV里，this问题就解决了";
-	
-};
-function fn2(){alert(2);}
-var n=0;
-function fn3(){
-	alert(3);
-	n++;
-	if(n==2){
-		off(this,"click",fn1);
-		off(this,"click",fn2);
-		off(this,"click",fn3);
-		
-	}
-
-}
-function fn4(){alert(4);}
-function fn5(){alert(5);}
-function fn6(){alert(6);};
-function fn7(){alert(7);}
-function fn8(e){
-
-	this.innerHTML="X:"+e.pageX+",Y:"+e.pageY;
-	this.innerHTML+=e.target;
-}
 function bind(ele,type,fn){
 	if(ele.addEventListener){
 		ele.addEventListener(type,fn,false);
@@ -140,14 +97,8 @@ function off(ele,type,fn){//解除绑定，就是在数组里把保存的方法�
 	}
 }
 
-on(ele,"click",fn8);
-on(ele,"click",fn1);
-on(ele,"click",fn2);
-
-
-
-
-
-
-
-</script>
+function processThis(obj,fn){
+	
+	return function(e){fn.call(obj,e)}	
+	
+}
